@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "dev2": "concurrently \"npm run server\" \"npm run dev\"",
+    "server": "json-server -w server/db.json -p 3001",
     "lint": "next lint"
   },
   "dependencies": {
