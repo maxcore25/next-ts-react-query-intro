@@ -1,18 +1,18 @@
 {
-  "goods": [
+  "countries": [
     {
       "id": 1,
-      "name": "Milk",
+      "name": "USA",
       "description": "lorem ipsum"
     },
     {
       "id": 2,
-      "name": "bananas",
+      "name": "Germany",
       "description": "lorem ipsum"
     },
     {
       "id": 3,
-      "name": "icecream",
+      "name": "France",
       "description": "lorem ipsum"
     }
   ]
