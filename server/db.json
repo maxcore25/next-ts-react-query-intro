@@ -2,15 +2,18 @@
   "goods": [
     {
       "id": 1,
-      "name": "Milk"
+      "name": "Milk",
+      "description": "lorem ipsum"
     },
     {
       "id": 2,
-      "name": "bananas"
+      "name": "bananas",
+      "description": "lorem ipsum"
     },
     {
       "id": 3,
-      "name": "icecream"
+      "name": "icecream",
+      "description": "lorem ipsum"
     }
   ]
 }
