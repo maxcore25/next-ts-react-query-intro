@@ -1,4 +1,3 @@
-import { count } from 'console';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -32,8 +31,8 @@ const Home: NextPage = () => {
                 key={country.id}
                 href='https://nextjs.org/docs'
                 className={styles.card}>
-                <h2>Documentation &rarr;</h2>
-                <p>Find in-depth information about Next.js features and API.</p>
+                <h2>{country.name}</h2>
+                <p>{country.description}</p>
               </a>
             ))}
           </div>
