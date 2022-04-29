@@ -1,16 +1,26 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { CountryService } from '../app/services/country.service';
+import { CountryService, ICountry } from '../app/services/country.service';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-  const {
-    isLoading,
-    data: response,
-    error,
-  } = useQuery('county list', () => CountryService.getAll());
+  const [countries, setCountries] = useState<ICountry[]>([]);
+
+  const { isLoading, error } = useQuery(
+    'county list',
+    () => CountryService.getAll(),
+    {
+      onSuccess: ({ data }) => {
+        setCountries(data);
+      },
+      onError: (error: any) => {
+        alert(error.message);
+      },
+    }
+  );
 
   return (
     <div className={styles.container}>
@@ -26,9 +36,9 @@ const Home: NextPage = () => {
 
         {isLoading ? (
           <h1>Loading...</h1>
-        ) : response?.data.length ? (
+        ) : countries.length ? (
           <div className={styles.grid}>
-            {response.data.map((country: any) => (
+            {countries.map(country => (
               <a
                 key={country.id}
                 href='https://nextjs.org/docs'
