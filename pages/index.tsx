@@ -2,28 +2,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+
 import { CountryService, ICountry } from '../app/services/country.service';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-  // const [countries, setCountries] = useState<ICountry[]>([]);
-
-  const {
-    isLoading,
-    error,
-    data: countries,
-  } = useQuery('county list', () => CountryService.getAll(), {
-    onError: (error: any) => {
-      alert(error.message);
-    },
-    select: ({ data }) =>
-      data.map(country => ({
-        ...country,
-        name: country.name + '!',
-      })),
-  });
-
   return (
     <div className={styles.container}>
       <Head>
