@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useCountries } from '../app/hooks/useCountries';
+import { useCountries } from '../../app/hooks/useCountries';
 import styles from '../styles/Home.module.css';
 
-const Home: NextPage = () => {
+const Country: NextPage = () => {
   const { isLoading, countries, error } = useCountries();
 
   return (
@@ -40,4 +40,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Country;
