@@ -5,16 +5,12 @@ export const useCountry = (id: string) => {
   const {
     isLoading,
     error,
-    data: countries,
-  } = useQuery('county list', () => CountryService.getAll(), {
+    data: country,
+  } = useQuery(['county list', id], () => CountryService.getById(id), {
     onError: (error: any) => {
       alert(error.message);
     },
-    select: ({ data }): ICountry[] =>
-      data.map(country => ({
-        ...country,
-        name: country.name + '!',
-      })),
+    select: ({ data }): ICountry => data,
   });
-  return { isLoading, countries, error };
+  return { isLoading, country, error };
 };
