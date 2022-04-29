@@ -7,20 +7,22 @@ import { CountryService, ICountry } from '../app/services/country.service';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-  const [countries, setCountries] = useState<ICountry[]>([]);
+  // const [countries, setCountries] = useState<ICountry[]>([]);
 
-  const { isLoading, error } = useQuery(
-    'county list',
-    () => CountryService.getAll(),
-    {
-      onSuccess: ({ data }) => {
-        setCountries(data);
-      },
-      onError: (error: any) => {
-        alert(error.message);
-      },
-    }
-  );
+  const {
+    isLoading,
+    error,
+    data: countries,
+  } = useQuery('county list', () => CountryService.getAll(), {
+    onError: (error: any) => {
+      alert(error.message);
+    },
+    select: ({ data }) =>
+      data.map(country => ({
+        ...country,
+        name: country.name + '!',
+      })),
+  });
 
   return (
     <div className={styles.container}>
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
 
         {isLoading ? (
           <h1>Loading...</h1>
-        ) : countries.length ? (
+        ) : countries?.length ? (
           <div className={styles.grid}>
             {countries.map(country => (
               <a
