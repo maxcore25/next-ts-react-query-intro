@@ -14,4 +14,7 @@ export const CountryService = {
   async getAll() {
     return axios.get<ICountry[]>('/countries');
   },
+  async getById(id: string) {
+    return axios.get<ICountry[]>(`/countries/${id}`);
+  },
 };
