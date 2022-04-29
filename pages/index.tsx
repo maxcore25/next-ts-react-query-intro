@@ -10,7 +10,6 @@ const Home: NextPage = () => {
     isLoading,
     data: response,
     error,
-    status,
   } = useQuery('county list', () => CountryService.getAll());
 
   return (
@@ -22,11 +21,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <h1>React Query</h1>
+        {error && <div style={{ color: 'red' }}>{(error as any).message}</div>}
+
         {isLoading ? (
           <h1>Loading...</h1>
         ) : response?.data.length ? (
           <div className={styles.grid}>
-            {response.data.map(country => (
+            {response.data.map((country: any) => (
               <a
                 key={country.id}
                 href='https://nextjs.org/docs'
