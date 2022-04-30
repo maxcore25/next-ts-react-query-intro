@@ -4,7 +4,7 @@ import { useCountries } from '../app/hooks/useCountries';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-  const { isLoading, countries, error } = useCountries();
+  const { isLoading, countries, error, refetch } = useCountries();
 
   return (
     <div className={styles.container}>
@@ -35,6 +35,7 @@ const Home: NextPage = () => {
         ) : (
           <h1>Elements not found</h1>
         )}
+        <button onClick={() => refetch()}>Fetch Data</button>
       </main>
     </div>
   );

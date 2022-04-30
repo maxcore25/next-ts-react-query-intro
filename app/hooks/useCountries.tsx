@@ -6,6 +6,7 @@ export const useCountries = () => {
     isLoading,
     error,
     data: countries,
+    refetch,
   } = useQuery('county list', () => CountryService.getAll(), {
     onError: (error: any) => {
       alert(error.message);
@@ -15,6 +16,7 @@ export const useCountries = () => {
         ...country,
         name: country.name + '!',
       })),
+    enabled: false,
   });
-  return { isLoading, countries, error };
+  return { isLoading, countries, error, refetch };
 };
