@@ -1,16 +1,17 @@
 import { useQuery } from 'react-query';
 import { CountryService, ICountry } from '../services/country.service';
 
-export const useCountry = (id: string) => {
+export const useCountry = (id?: string) => {
   const {
     isLoading,
     error,
     data: country,
-  } = useQuery(['county list', id], () => CountryService.getById(id), {
+  } = useQuery(['county list', id], () => CountryService.getById(id || ''), {
     onError: (error: any) => {
       alert(error.message);
     },
     select: ({ data }): ICountry => data,
+    enabled: !!id,
   });
   return { isLoading, country, error };
 };
