@@ -17,4 +17,9 @@ export const CountryService = {
   async getById(id: string) {
     return axios.get<ICountry[]>(`/countries/${id}`);
   },
+  async create(data: ICountry) {
+    return axios.post('/countries', data, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  },
 };
