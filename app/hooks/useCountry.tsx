@@ -6,7 +6,7 @@ export const useCountry = (id?: string) => {
     isLoading,
     error,
     data: country,
-  } = useQuery(['county list', id], () => CountryService.getById(id || ''), {
+  } = useQuery(['country list', id], () => CountryService.getById(id || ''), {
     onError: (error: any) => {
       alert(error.message);
     },

@@ -7,7 +7,7 @@ export const useCountries = () => {
     error,
     data: countries,
     refetch,
-  } = useQuery('county list', () => CountryService.getAll(), {
+  } = useQuery('country list', () => CountryService.getAll(), {
     onError: (error: any) => {
       alert(error.message);
     },
