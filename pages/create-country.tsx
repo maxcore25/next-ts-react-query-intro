@@ -3,11 +3,15 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-import styles from '../../styles/Home.module.css';
+import styles from '../styles/Home.module.css';
 import { CountryService, ICountry } from '../app/services/country.service';
 
 const Country: NextPage = () => {
-  const [data, setData] = useState<ICountry>({} as ICountry);
+  const [data, setData] = useState<ICountry>({
+    id: 0,
+    name: '',
+    description: '',
+  } as ICountry);
 
   const { push } = useRouter();
   const { isLoading, mutateAsync } = useMutation(
@@ -24,6 +28,7 @@ const Country: NextPage = () => {
   );
 
   const handleOnSubmit = async (e: any) => {
+    console.log(data);
     e.preventDefault();
     await mutateAsync(data);
   };
@@ -38,7 +43,7 @@ const Country: NextPage = () => {
 
       <main className={styles.main}>
         <h1>Add Country</h1>
-        <form onSubmit={e => handleOnSubmit(e)}>
+        <form onSubmit={e => handleOnSubmit(e)} className={styles.form}>
           <input
             type='text'
             placeholder='Enter ID'
@@ -57,7 +62,7 @@ const Country: NextPage = () => {
             value={data.description}
             onChange={e => setData({ ...data, description: e.target.value })}
           />
-          <button>Create</button>
+          <button disabled={isLoading}>Create</button>
         </form>
       </main>
     </div>
